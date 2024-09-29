@@ -1,0 +1,275 @@
+body {
+    background-color: white;
+    color: black;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+nav {  
+    background-color: #2ecc71;  
+    padding: 10px 0;  
+    text-align: center;  
+}  
+  
+nav ul {  
+    list-style-type: none;  
+    margin: 0;  
+    padding: 0;  
+    display: flex;  
+    justify-content: center;  
+}  
+  
+nav li {  
+    margin: 0 15px;  
+}  
+  
+nav a {  
+    color: white; /* 保持白色文字 */  
+    text-decoration: none;  
+    display: inline-block;  
+    padding: 10px 20px;  
+    border-radius: 5px;  
+    transition: all 0.3s ease;  
+    background-color: transparent; /* 初始背景色为透明 */  
+    border: 2px solid transparent; /* 初始边框为透明，用于悬浮时显示 */  
+}  
+  
+/* 导航栏链接的悬浮效果 */  
+nav a:hover {  
+    color: #fff;  
+    background-color: rgba(52, 152, 219, 0.4); 
+    border-color: #3498db;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
+}  
+  
+/* 激活状态的链接样式 */  
+nav a.active {  
+    background-color: #3498db; 
+    color: #fff; 
+    border-color: #3498db; 
+}
+  
+header {  
+    background-color: #2ecc71; 
+    color: white;  
+    padding: 5px 20px 20px 20px;  
+    text-align: center;  
+}  
+  
+section {  
+    margin: 20px;  
+    background-color: #ffffff; 
+}  
+  
+h2 {  
+    color: #2ecc71; 
+}  
+
+footer {  
+    text-align: center;  
+    padding: 10px;  
+    color: black; 
+    position: relative; 
+    bottom: 0;  
+    width: 100%;  
+}  
+  
+#fundraiser-list {  
+    display: flex;  
+    flex-direction: column; 
+    gap: 20px; 
+    padding: 20px;  
+    background-color: #f9f9f9; 
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}  
+  
+/* fundraiser-list内每个fundraiser的样式 */  
+#fundraiser-list > div { 
+    background-color: white;  
+    padding: 15px;  
+    border-radius: 5px;  
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);  
+}  
+  
+#fundraiser-list h3 {  
+    color: #004d00; 
+    margin-top: 0;
+}  
+  
+#fundraiser-list p {  
+    margin: 5px 0; 
+    color: #333; 
+}  
+  
+#fundraiser-list a {  
+    color: #007bff; 
+    text-decoration: none; 
+}  
+  
+#fundraiser-list a, .organizer-link {    
+    color: #007bff; 
+    text-decoration: none;  
+}  
+  
+#fundraiser-list a:hover, .organizer-link:hover {    
+    text-decoration: underline;  
+}  
+  
+.organizer-info:hover {    
+    background-color: #e9ecef; 
+    border: 1px solid #007bff;  
+}  
+  
+
+.organizer-info:hover .organizer-link {    
+    color: #0056b3; 
+}
+
+
+#search-form {  
+    display: flex;  
+    flex-direction: column;  
+    width: 100%;  
+    max-width: 600px;   
+    margin: 20px auto;   
+    padding: 20px;  
+    background-color: #fff;   
+    border-radius: 8px;   
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+}  
+  
+#search-form label {  
+    margin-bottom: 5px;   
+    color: #333;   
+}  
+  
+#search-form input,  
+#search-form select {  
+    width: 100%;   
+    padding: 10px;  
+    margin-bottom: 15px;  
+    border: 1px solid #ccc;   
+    border-radius: 4px; 
+    box-sizing: border-box;   
+}  
+  
+#search-form button {  
+    width: 100%;   
+    padding: 10px;   
+    background-color: #2ecc71;  
+    color: white;   
+    border: none; 
+    border-radius: 4px;  
+    cursor: pointer;  
+    transition: background-color 0.3s ease;  
+}  
+  
+#search-form button:hover {  
+    background-color: #27ae60;   
+}  
+  
+/* 清除按钮样式 */  
+#search-form button[type="button"] {  
+    background-color: #f44336;  
+    margin-top: 10px;  
+}  
+  
+#search-form button[type="button"]:hover {  
+    background-color: #e73c2e;  
+}  
+
+
+/* 筹款人详情页面css */
+.fundraiser-container {  
+    background-color: #fff;  
+    border-radius: 8px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    padding: 20px;  
+    margin-bottom: 40px;  
+    width: 100%;  
+    max-width: 1300px;  
+    margin: 0 auto;  
+    overflow: hidden;  
+}  
+  
+.fundraiser-header {  
+    margin-bottom: 20px;  
+}  
+  
+.fundraiser-title {  
+    font-size: 24px;  
+    margin: 0;  
+    color: #007bff;  
+}  
+  
+.fundraiser-subtitle {  
+    font-size: 18px;  
+    color: #666;  
+}  
+  
+.organizer {  
+    font-weight: bold;  
+}  
+  
+.fundraiser-details {  
+    display: flex;  
+    flex-direction: column;  
+}  
+  
+.info-block {  
+    margin-bottom: 20px;  
+}  
+  
+.project-description {  
+    font-size: 20px;
+    font-weight: bold;  
+}  
+  
+.stats-block {  
+    display: flex;  
+    flex-wrap: wrap;  
+    justify-content: space-between;  
+}  
+  
+.stat {  
+    flex: 0 0 calc(50% - 10px);  
+    margin-bottom: 10px;  
+    display: flex;  
+    flex-direction: column;  
+    align-items: flex-start;  
+}  
+  
+.stat-label {  
+    font-weight: bold;  
+    margin-bottom: 5px;  
+}  
+  
+.stat-value {  
+    font-size: 16px;  
+    color: #007bff;  
+}  
+  
+/* Footer */  
+footer.fundraiser-footer {  
+    text-align: center;  
+    margin-top: 20px;  
+}  
+  
+.donate-btn {  
+    padding: 10px 20px;  
+    font-size: 16px;  
+    color: white;  
+    background-color: #007bff;  
+    border: none;  
+    border-radius: 4px;  
+    cursor: pointer;  
+    transition: background-color 0.3s;  
+}  
+  
+.donate-btn:hover {  
+    background-color: #0056b3;  
+} 

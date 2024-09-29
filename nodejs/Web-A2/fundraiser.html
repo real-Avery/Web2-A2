@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonprofit Organization Homepage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>  
+            <li><a href="search.html" class="nav-link">Search Fundraisers</a></li>  
+           
+        </ul>
+    </nav>
+    <header>
+        <h1>Welcome to Our Nonprofit Organization</h1>
+        <p>Together, we can change the world and support those in need.</p>
+    </header>
+    <div class="fundraiser-container" style="margin-top: 20px;">  
+        <div style="margin: 20px;">
+            <h1 class="fundraiser-title"></h1>  
+        </div>
+        <section class="fundraiser-details">  
+            <div class="info-block">  
+                <h2>Info</h2>
+                <p class="project-description"></p>    
+            </div>  
+            <h2>Statistics</h2>  
+            <div class="stats-block">     
+                <div class="stat">  
+                    <p class="stat-label">TargetAmount:</p>  
+                    <p class="stat-value" id="TargetAmount">￥100,000</p>  
+                </div>  
+                <div class="stat">  
+                    <p class="stat-label">CurrentFunding:</p>  
+                    
+                    <p class="stat-value" id="CurrentFunding">￥50,000</p>  
+                </div>  
+                <div class="stat">  
+                    <p class="stat-label">City</p>  
+                    <p class="stat-value" id="City"></p>  
+                </div>  
+                <div class="stat">  
+                    <p class="stat-label">Category:</p>  
+                    <p class="stat-value" id="Category"></p>  
+                </div>  
+            </div>  
+        </section>  
+        <footer class="fundraiser-footer">  
+            <button class="donate-btn">捐赠</button>  
+        </footer>  
+    </div>  
+    <footer>
+        <p>Contact Us: info@nonprofit.org</p>
+    </footer>
+    <script>
+ document.addEventListener('DOMContentLoaded', function() {    
+    const url = new URL(window.location.href);    
+    const fundraiserId = url.searchParams.get('id');  
+    fetch(`http://localhost:3000/FundraiserById?id=${fundraiserId}`)
+        .then(response => response.json())    
+        .then(data => {    
+            data=data[0]
+            // console.log(data)
+            document.querySelector('.fundraiser-title').textContent = data.ORGANIZER;  
+            document.querySelector('.project-description').textContent = data.CAPTION;  
+            document.getElementById("TargetAmount").textContent = "￥"+data.TARGET_FUNDING;
+            document.getElementById("CurrentFunding").textContent = "￥"+data.CURRENT_FUNDING;
+            document.getElementById("City").textContent = data.CITY;
+            document.getElementById("Category").textContent = data.name; 
+        })    
+        .catch(error => console.error('Error fetching data:', error));    
+});
+    </script>
+    
+</body>
+</html>
+
+
+

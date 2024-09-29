@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search fundraising</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            
+            <li><a href="index.html" class="nav-link">Home</a></li>  
+            <li><a href="search.html" class="nav-link">Search Fundraisers</a></li>  
+         
+        </ul>
+    </nav>
+    <header>
+        <h1>Search fundraiser</h1>
+    </header>
+    <section style="display: flex;padding: 10px; justify-content: space-between;">
+        <div style="margin: 20px 10px 10px 0px;flex: 1;">
+            <div id="fundraiser-list" style="padding: 10px; border: 1px solid #ccc;width: 95%;">
+                <strong style="color: black;">Please enter your search criteria</strong>
+            </div>
+        </div>
+        <form id="search-form" style="flex: 3;">
+            <label for="organizer">Organizer:</label>
+            <input type="text" id="organizer">
+            <label for="city">City:</label>
+            <input type="text" id="city">
+            <label for="category">Categories:</label>
+            <select id="category">
+                <option value="">Select category</option>
+                <option value="Medical treatment">Medical treatment</option>
+                <option value="education">education</option>
+                <option value="Social influence">Social influence</option>
+                <option value="Crisis relief">Crisis relief</option>
+            </select>
+            <button type="submit">Search</button>
+            <button type="button" onclick="clearCheckboxes()">Clear away</button>
+        </form>
+    </section>
+    <footer>
+        <p>Contact Us: info@nonprofit.org</p>
+    </footer>
+    <script >
+document.addEventListener('DOMContentLoaded', function() {  
+    //实现导航栏的选中状态
+    var navLinks = document.querySelectorAll('.nav-link');  
+    var currentPage = window.location.pathname.split('/').pop().split('.')[0]; // 获取当前页面的文件名 
+  
+    navLinks.forEach(function(link) {  
+        var linkPath = link.getAttribute('href').split('/').pop().split('.')[0]; // 获取链接的文件名  
+        if (linkPath === currentPage) {  
+            link.classList.add('active');  
+        } else {  
+            link.classList.remove('active');  
+        }  
+    });  
+
+    //渲染选项
+    fetch('http://localhost:3000/Search')  
+    .then(response => response.json())  
+    .then(data => {  
+        console.log(data)
+        const select = document.getElementById('category'); 
+        select.innerHTML = '';  
+        select.append(new Option('Select category', ''));
+        data.forEach(item => {  
+            const option = document.createElement('option');  
+            option.value = item.CATEGORY_ID;  
+            option.textContent = item.NAME;  
+            select.appendChild(option);  
+        });  
+    })  
+    .catch(error => console.error('Error fetching data:', error));
+});
+
+
+
+// 清除复选框的函数
+function clearCheckboxes() {
+    document.getElementById('organizer').value = '';
+    document.getElementById('city').value = '';
+    document.getElementById('category').value = '';
+}
+
+//调用搜索API
+document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // 获取搜索条件
+        const organizer = document.getElementById('organizer').value;
+        const city = document.getElementById('city').value;
+        const category = document.getElementById('category').value;
+
+        if (!organizer && !city && !category) {
+            alert('请至少选择一个搜索条件');
+            return;
+        }
+        // API 调用示例
+        fetch(`http://localhost:3000/Fundraisers?organizer=${organizer}&city=${city}&category=${category}`)
+            .then(response => response.json())
+            .then(data => {
+                const results = document.getElementById('fundraiser-list');
+                results.innerHTML = '';
+                if (data.length === 0) {
+                    results.innerHTML = '<strong style="color:red;">No fundraiser found</strong>';
+                } else {
+                    data.forEach(fundraiser => {
+                        const div = document.createElement('div');
+                        div.innerHTML = `
+                    <h3>${fundraiser.CAPTION}</h3>
+                    <p>Organizer::<a href="fundraiser.html?id=${fundraiser.FUNDRAISER_ID}" class="organizer-link"> ${fundraiser.ORGANIZER}</a></p>
+                    <p>TargetAmount: ￥${fundraiser.TARGET_FUNDING}</p>
+                    <p>CurrentFunding:￥${fundraiser.CURRENT_FUNDING}</p>
+                    <p>City: ${fundraiser.CITY}</p>
+                    <p>Category: ${fundraiser.name}</p>
+                    `;
+                    results.appendChild(div);
+                        
+                    });
+                }
+            });
+    });
+    </script>
+</body>
+</html>
