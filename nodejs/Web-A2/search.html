@@ -18,12 +18,15 @@
     <header>
         <h1>Search fundraiser</h1>
     </header>
+      <!-- 搜索表单和结果展示区域 -->
     <section style="display: flex;padding: 10px; justify-content: space-between;">
+        <!-- 搜索条件输入区域 -->
         <div style="margin: 20px 10px 10px 0px;flex: 1;">
             <div id="fundraiser-list" style="padding: 10px; border: 1px solid #ccc;width: 95%;">
                 <strong style="color: black;">Please enter your search criteria</strong>
             </div>
         </div>
+         <!-- 搜索表单 -->
         <form id="search-form" style="flex: 3;">
             <label for="organizer">Organizer:</label>
             <input type="text" id="organizer">
@@ -41,10 +44,12 @@
             <button type="button" onclick="clearCheckboxes()">Clear away</button>
         </form>
     </section>
+    <!-- 页脚 -->
     <footer>
         <p>Contact Us: info@nonprofit.org</p>
     </footer>
     <script >
+        // 当文档加载完成后执行以下代码
 document.addEventListener('DOMContentLoaded', function() {  
     //实现导航栏的选中状态
     var navLinks = document.querySelectorAll('.nav-link');  
@@ -59,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }  
     });  
 
-    //渲染选项
+    // 从服务器获取筹款活动类别数据并填充到下拉框中
     fetch('http://localhost:3000/Search')  
     .then(response => response.json())  
     .then(data => {  

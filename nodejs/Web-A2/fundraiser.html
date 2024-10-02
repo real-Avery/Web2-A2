@@ -14,6 +14,7 @@
            
         </ul>
     </nav>
+     <!-- 页面头部，包含欢迎信息和组织使命 -->
     <header>
         <h1>Welcome to Our Nonprofit Organization</h1>
         <p>Together, we can change the world and support those in need.</p>
@@ -27,6 +28,7 @@
                 <h2>Info</h2>
                 <p class="project-description"></p>    
             </div>  
+                <!-- 项目统计数据 -->
             <h2>Statistics</h2>  
             <div class="stats-block">     
                 <div class="stat">  
@@ -48,6 +50,7 @@
                 </div>  
             </div>  
         </section>  
+          <!-- 捐赠按钮 -->
         <footer class="fundraiser-footer">  
             <button class="donate-btn">捐赠</button>  
         </footer>  
@@ -55,10 +58,13 @@
     <footer>
         <p>Contact Us: info@nonprofit.org</p>
     </footer>
+      <!-- JavaScript代码，用于获取筹款项目的详细信息并填充到页面中 -->
     <script>
  document.addEventListener('DOMContentLoaded', function() {    
+      // 从URL中获取筹款项目的ID
     const url = new URL(window.location.href);    
     const fundraiserId = url.searchParams.get('id');  
+     // 向服务器发送请求，获取筹款项目的详细信息
     fetch(`http://localhost:3000/FundraiserById?id=${fundraiserId}`)
         .then(response => response.json())    
         .then(data => {    
@@ -77,6 +83,5 @@
     
 </body>
 </html>
-
 
 
